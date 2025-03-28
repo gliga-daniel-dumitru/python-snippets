@@ -1,0 +1,22 @@
+To start our Flask application, first we will check if our virtual environment is active.
+For that, we will open a terminal session and look for the name of our virtual environment within parentheses before the command prompt. We should see something like this:
+(.venv) user@user FlaskProject %
+
+If we don't see our virtual environment name, we will search in our project to see if it exists. If not, we will run this command to create one:
+- for Linux / MacOS: python3 -m venv .venv (or virtualenv .venv)
+- for Windows: python -m venv .venv
+
+Then we can activate our virtual environment by running the following command:
+- for Linux / MacOS: source .venv/bin/activate
+- for Windows: .venv\Scripts\activate
+
+After our venv is active, we will install the libraries that are necessary for running our Flask application.
+pip install -r requirements.txt (or pip3 install -r requirements.txt)
+
+What does this command do? It will take one by one each library from requirements.txt and it will install it.
+
+The last step is to start our application. We will start our application by running our application file like any other Python script:
+python <file_name> (or python3 <file_name>)
+
+This will open a connection at the following address: http://127.0.0.1:5000.
+From here we can access the routes that we created in our script.
