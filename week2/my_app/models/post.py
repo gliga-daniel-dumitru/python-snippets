@@ -3,7 +3,7 @@ from . import db
 
 
 class Post(db.Model):
-    __tablename__ = 'posts'
+    __tablename__ = 'posts' # special property
 
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
@@ -11,7 +11,7 @@ class Post(db.Model):
     hearts = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    def __repr__(self):
+    def __repr__(self): # representation of how the object will be displayed
         return f'<Post {self.id}: {self.title}>'
 
     def save(self):

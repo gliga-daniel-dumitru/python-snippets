@@ -2,10 +2,8 @@ from models import db
 from routes import create_app
 from sqlalchemy.exc import OperationalError
 from sqlalchemy import text
-from flask_cors import CORS
 
 app = create_app()
-CORS(app)
 
 with app.app_context():
     try:
