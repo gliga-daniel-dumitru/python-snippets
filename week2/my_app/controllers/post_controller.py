@@ -27,7 +27,7 @@ def get_post_by_id(post_id):
 def get_posts():
     posts = get_all_posts()
     if not posts:
-        return jsonify({"message": "No posts found"}), 404
+        return jsonify([]), 200
     return jsonify(posts), 200
 
 

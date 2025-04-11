@@ -1,4 +1,5 @@
 from models import Post, db
+from services.comment_service import get_comments_by_post_id
 
 
 def create_post(data):
@@ -28,7 +29,6 @@ def create_post(data):
         "updated_at": post.updated_at
     }
 
-
 def get_post(post_id):
     post = db.session.get(Post, post_id)
     if not post:
@@ -41,14 +41,15 @@ def get_post(post_id):
         "hearts": post.hearts,
         "sentiment": post.sentiment,
         "created_at": post.created_at,
-        "updated_at": post.updated_at
+        "updated_at": post.updated_at,
+        "comments": get_comments_by_post_id(post.id)
     }
 
 
 def get_all_posts():
     posts = Post.query.all()
     if not posts:
-        return None
+        return []
 
     return [{
         "id": post.id,
@@ -57,7 +58,8 @@ def get_all_posts():
         "hearts": post.hearts,
         "sentiment": post.sentiment,
         "created_at": post.created_at,
-        "updated_at": post.updated_at
+        "updated_at": post.updated_at,
+        "comments": get_comments_by_post_id(post.id)
     } for post in posts]
 
 
@@ -67,9 +69,13 @@ def update_post(post_id, data):
     if not post:
         raise ValueError("Post not found")
 
+    if not len(data):
+        raise ValueError("Payload cannot be empty")
+
     content = data.get("content")
-    if content:
+    if content or content == "":
         if len(content) < 10:
+            print(content, len(content))
             raise ValueError("Content must be at least 10 characters long.")
         post.content = content
 
