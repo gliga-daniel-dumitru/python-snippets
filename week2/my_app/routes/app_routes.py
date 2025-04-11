@@ -3,7 +3,7 @@ from config import Config
 from .comment_routes import comments_routes
 from .post_routes import posts_routes
 from models import db
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
 def create_app():
     app = Flask(__name__)
