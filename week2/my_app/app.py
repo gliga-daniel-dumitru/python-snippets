@@ -16,7 +16,7 @@ with app.app_context():
 with app.app_context():
     try:
         # db.drop_all()
-        db.create_all()
+        # db.create_all()
         print("Tables created successfully")
     except Exception as e:
         print(f"Error creating tables: {str(e)}")

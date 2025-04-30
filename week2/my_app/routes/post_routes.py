@@ -4,11 +4,6 @@ from controllers.post_controller import *
 posts_routes = Blueprint("posts_routes", __name__)
 
 
-@posts_routes.route('/', methods=['GET'])
-def index():
-    return jsonify("Hello, World!")
-
-
 @posts_routes.route('/posts', methods=['POST'])
 def create_post():
     return add_post()
@@ -18,9 +13,20 @@ def create_post():
 def list_posts():
     return get_posts()
 
+
 @posts_routes.route('/posts/<int:post_id>', methods=['GET'])
 def list_post_by_id(post_id):
     return get_post_by_id(post_id)
+
+
+@posts_routes.route('/posts/<int:post_id>', methods=['PUT'])
+def update_post_by_id(post_id):
+    return put_post_by_id(post_id)
+
+
+@posts_routes.route('/posts/<int:post_id>', methods=['DELETE'])
+def remove_post_by_id(post_id):
+    return delete_post_by_id(post_id)
 
 
 @posts_routes.route('/posts/<int:post_id>/like', methods=['POST'])
